@@ -5,8 +5,7 @@ open System.Linq
 open FSharpx.Collections
 
 
-[<AutoOpen>]
-module SeqTools =
+module Seq =
 
   let inline count i = 
     seq { let n = ref i
@@ -48,7 +47,6 @@ module SeqTools =
     repeat (List.ofSeq source) r
     |> Seq.fold (product (fun result pool -> Queue.conj pool result))
                 (seq [Queue.empty])
-    |> Seq.map (Array.ofSeq)
   
   let permutations (source: 'T seq) r =
     let pool = Array.ofSeq source
