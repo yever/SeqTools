@@ -39,7 +39,7 @@ module Seq =
               |> Seq.choose id
   
   let inline product f source1 source2 = 
-    seq { for x in source1 do for y in source2 do yield f x y }
+    seq { for x in source1 do for y in Seq.cache source2 do yield f x y }
 
   let inline appendItem col item = Seq.append col [item]
   
